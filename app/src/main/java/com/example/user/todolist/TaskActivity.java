@@ -12,11 +12,11 @@ import static com.example.user.todolist.R.string.task;
 
 public class TaskActivity extends AppCompatActivity {
 
-    
+
 
     Button backButton; // instance variable
 
-
+ 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // function common to all Activities
