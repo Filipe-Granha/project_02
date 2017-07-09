@@ -14,7 +14,7 @@ public class TasksListTest {
     @Test
     public void getListTest() {
         TasksList tasksList = new TasksList();
-        assertEquals(2, tasksList.getList().size());
+        assertEquals(14, tasksList.getList().size());
 
     }
 }
