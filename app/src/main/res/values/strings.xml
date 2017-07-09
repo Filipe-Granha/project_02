@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Welcome to Task\'em</string>
+    <string name="task_activity_title">Add New Task</string>
+    <string name="task">Your New Task Here</string>
+    <string name="add">Add</string>
+    <string name="show">This Task...</string>
+
+</resources>
