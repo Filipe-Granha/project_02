@@ -21,7 +21,7 @@ public class TasksList { // class
 
         list = new ArrayList<Task>();
 
-        list.add(new Task("Task A", "Description of task A"));
+       /* list.add(new Task("Task A", "Description of task A"));
         list.add(new Task("Task B", "Another description, this time for task B"));
         list.add(new Task("Task A", "Description of task A"));
         list.add(new Task("Task A", "Description of task A"));
@@ -34,7 +34,7 @@ public class TasksList { // class
         list.add(new Task("Task A", "Description of task A"));
         list.add(new Task("Task A", "Description of task A"));
         list.add(new Task("Task A", "Description of task A"));
-        list.add(new Task("Task A", "Description of task A"));
+        list.add(new Task("Task A", "Description of task A")); */
 
     }
 

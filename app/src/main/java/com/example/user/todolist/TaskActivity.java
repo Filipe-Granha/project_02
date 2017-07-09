@@ -1,11 +1,16 @@
 package com.example.user.todolist;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import static com.example.user.todolist.R.string.task;
 
 
@@ -14,7 +19,10 @@ public class TaskActivity extends AppCompatActivity {
 
 
 
-    Button backButton; // instance variable
+    EditText descriptionInput;
+    EditText titleInput;
+    Button backButton;
+    Button saveButton;
 
 
 
@@ -24,6 +32,7 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task); // the layout .xml file that will be displayed
 
         backButton = (Button)findViewById(R.id.back_to_list_button); // initializes Button
+        saveButton = (Button)findViewById(R.id.save_button);
     }
 
 
@@ -33,4 +42,9 @@ public class TaskActivity extends AppCompatActivity {
         intent.putExtra("task", task);
         startActivity(intent); // starts the intent (confirms it's ok to go)
     }
+
+
+
+
+
 }
