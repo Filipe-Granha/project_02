@@ -15,15 +15,11 @@ import java.util.ArrayList;
 
 public class TasksListAdapter extends ArrayAdapter<Task> {
 
+
     public TasksListAdapter(Context context, ArrayList<Task> tasks) {
         super(context, 0, tasks);
     }
 
-
-
-
-
-    //Creating the list item view
 
     @Override
     public View getView(int position, View listItemView, ViewGroup parent) {
@@ -33,13 +29,13 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
 
         Task currentTask = getItem(position);
 
-
-         // we have to do the following 2 lines for each of the instance variables
-
+        // we have to do the following 2 lines for each
+        // of the instance variables that we want to show in the Activity/view
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(currentTask.getTitle().toString());
 
-        listItemView.setTag(currentTask); // setTag() allows us to attach an object to a view.
+        // setTag() allows us to attach an object to a view.
+        listItemView.setTag(currentTask);
 
         return listItemView;
 
