@@ -17,7 +17,7 @@ public class TasksList { // class
 
     public TasksList(){ // constructor
         list = new ArrayList<Task>();
-//        list.add(new Task("Task A", "Description of task A"));
+        list.add(new Task("Task A", "Description of task A"));
 //        list.add(new Task("Task B", "Another description, this time for task B"));
 //        list.add(new Task("Task C", "Description of task C"));
 //        list.add(new Task("Task A", "Description of task A"));

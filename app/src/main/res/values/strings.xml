@@ -4,5 +4,6 @@
     <string name="task">Your New Task Here</string>
     <string name="add">Add</string>
     <string name="show">This Task...</string>
+    <string name="preference_file_key">Individual Task</string>
 
 </resources>
