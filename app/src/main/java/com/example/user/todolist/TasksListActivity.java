@@ -16,6 +16,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+
+import static android.R.attr.data;
+import static com.example.user.todolist.R.id.tasksCounter;
 import static com.example.user.todolist.R.string.task;
 
 
@@ -26,6 +29,7 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
     Button addButton;
+    TextView tasksCounter;
 
 
     @Override
@@ -35,6 +39,9 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         Log.d(getClass().toString(), "onCreate called");
 
         addButton = (Button)findViewById(R.id.addButton);
+
+
+
 
 
 
@@ -68,6 +75,8 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         TasksListAdapter taskAdapter = new TasksListAdapter(this, tasks);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
+
+
     }
 
 
@@ -79,20 +88,23 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
     }
 
     // Counter for total number of tasks
-    public int countAllTasks(View TextView) {
-        TextView textView = (TextView) findViewById(R.id.tasksCounter);
+    public void countAllTasks(View TextView) {
+//        TextView textView = (TextView) findViewById(tasksCounter);
         ArrayList<Task> tasks = new ArrayList<Task>();
         int counter = 0;
         String counterString = "Your list is empty!";
         String counterStringTwo = "";
-//        if(tasks == null) {
-//            counterString += " Add one now?";
-//            for (Task t : tasks) {
-//                counter += 1;
-//            }
-//        }
-        return tasks.size();
+        if (tasks == null) {
+            counterString += " Add a task now?";
+            for (Task t : tasks) {
+                counter += 1;
+            }
+        }
     }
+
+//    tasks.size(); ??
+
+
 
 
 
