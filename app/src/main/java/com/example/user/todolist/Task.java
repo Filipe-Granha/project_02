@@ -1,7 +1,10 @@
 package com.example.user.todolist;
 
 
+import android.os.Bundle;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by user on 08/07/2017.
@@ -11,6 +14,8 @@ public class Task implements Serializable {
 
     private String title;
     private String description;
+
+
 
     public  Task(String title, String description) {
         this.title = title;
@@ -24,6 +29,7 @@ public class Task implements Serializable {
     public String getDescription() {
         return this.description;
     }
+
 
 
 

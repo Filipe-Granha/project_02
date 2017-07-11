@@ -1,12 +1,18 @@
 package com.example.user.todolist;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import static com.example.user.todolist.R.string.task;
 
@@ -18,6 +24,7 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
     Button addButton; // instance variable
+
 
 
     @Override
@@ -41,6 +48,7 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         // 'list' is from the .xml file (android:id="@+id/list")
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
+
     }
 
 
@@ -65,4 +73,26 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
 
+
+
+    // STEP 5 - Creates Text View box (which is a container,
+    // essential for anything to show up on the Activity)
+//        // and displays a basic String with the task details
+//        TextView list = (TextView)findViewById(R.id.individual_task);
+//        String taskString = "";
+//        for(Task t : tasks){
+//            taskString += t.getTitle() + " and another test " + t.getDescription() + "\n";
+//        }
+//        list.setText(taskString);
+
+
+
+
+    // !!!CAREFUL: If active here, it will save the pair we click on the task in the TasksList every time!
+    // STEP 6 - Saves key/value pair to SharedPreferences
+
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putString("Task", gson.toJson(tasks));
+//        editor.apply();
+////
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,6 +16,9 @@ import java.util.ArrayList;
 public class ShowTaskActivity extends AppCompatActivity {
 
 
+    // DON'T CHANGE ANYTHING FOR NOW (TUESDAY, 12:00 PM)
+    // PAGE THAT DISPLAYS EACH INDIVIDUAL TASK
+    // NEEDS ALL THE STEPS
 
 
 
@@ -53,13 +57,32 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         // STEP 5 - Creates Text View box (which is a container,
         // essential for anything to show up on the Activity)
-        // and displays a basic String with the task details
+//        // and displays a basic String with the task details
         TextView list = (TextView)findViewById(R.id.individual_task);
+//        String taskString = "";
+//        for(Task t : tasks){
+//            taskString += t.getTitle() + " and another test " + t.getDescription() + "\n";
+//        }
+//        list.setText(taskString);
         String taskString = "";
-        for(Task t : tasks){
-            taskString += t.getTitle() + " " + t.getDescription() + "\n";
+        if(newTask != null) {
+
+            taskString += newTask.getTitle() + " banana " + newTask.getDescription();
         }
         list.setText(taskString);
+
+
+
+
+        // !!!CAREFUL: If active here, it will save the pair we click on the task in the TasksList every time!
+        // STEP 6 - Saves key/value pair to SharedPreferences
+//
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putString("Task", gson.toJson(tasks));
+//        editor.apply();
+//
+//
+
     }
 
 }

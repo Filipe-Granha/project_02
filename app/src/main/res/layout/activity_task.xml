@@ -101,11 +101,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="8dp" />
 
-    <ListView
-        android:layout_width="331dp"
-        android:layout_height="132dp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="248dp" />
+
 
 
 </android.support.constraint.ConstraintLayout>
