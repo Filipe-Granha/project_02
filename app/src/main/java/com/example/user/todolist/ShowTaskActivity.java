@@ -71,16 +71,8 @@ public class ShowTaskActivity extends AppCompatActivity {
         }
         list.setText(taskString);
 
+        
 
-
-
-        // !!!CAREFUL: If active here, it will save the pair we click on the task in the TasksList every time!
-        // STEP 6 - Saves key/value pair to SharedPreferences
-//
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putString("Task", gson.toJson(tasks));
-//        editor.apply();
-//
 //
 
     }
