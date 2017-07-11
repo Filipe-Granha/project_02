@@ -41,9 +41,8 @@ public class TaskActivity extends AppCompatActivity {
     Button backButton;
     Button saveButton;
 
-    private String title;
-    private String description;
     public ArrayList<Task> tasks = new ArrayList<Task>();
+
 
 
 
@@ -54,13 +53,10 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task); // the layout .xml file that will be displayed
 
 
-//
         titleInput = (EditText) findViewById(R.id.titleInput);
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         backButton = (Button) findViewById(R.id.back_to_list_button);
         saveButton = (Button) findViewById(R.id.save_button);
-
-
 
 
     }
@@ -70,8 +66,11 @@ public class TaskActivity extends AppCompatActivity {
     // save the users' titleInput and descriptionInput
     public void onSaveButtonClicked(View button) { // function for the Button "Save"
 
+
+
         String title = titleInput.getText().toString();
         String description = descriptionInput.getText().toString();
+
 
         if(titleInput.getText().toString().length() == 0 ) {
             titleInput.setError( "Input Field Is Empty");
@@ -81,10 +80,11 @@ public class TaskActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
             intent.putExtra("task", task);
             startActivity(intent); // starts the intent (confirms it's ok to go)
+            Task newTask = new Task(title, description);
+            tasks.add(newTask);
+
         }
 
-        Task newTask = new Task(title, description);
-        tasks.add(newTask);
 
 
     }

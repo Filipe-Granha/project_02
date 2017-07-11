@@ -16,9 +16,10 @@ import java.util.ArrayList;
 public class ShowTaskActivity extends AppCompatActivity {
 
 
-    // DON'T CHANGE ANYTHING FOR NOW (TUESDAY, 12:00 PM)
     // PAGE THAT DISPLAYS EACH INDIVIDUAL TASK
-    // NEEDS ALL THE STEPS
+
+    //    READY
+
 
 
 
@@ -71,7 +72,7 @@ public class ShowTaskActivity extends AppCompatActivity {
         }
         list.setText(taskString);
 
-        
+
 
 //
 
