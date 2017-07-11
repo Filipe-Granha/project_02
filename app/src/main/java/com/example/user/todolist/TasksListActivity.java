@@ -54,8 +54,7 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
     }
 
 
-    // on click in each item of the list, it should take us to another activity
-    // and show details about that particular item
+    // on click in each item of the list, takes us to the ShowTaskActivity
     public void getTask(View listItem) {
         Task task = (Task) listItem.getTag();
         Intent intent = new Intent(this, ShowTaskActivity.class); // the activity we want to go to when pressing the button
@@ -63,27 +62,6 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         startActivity(intent); // starts the intent (confirms it's ok to go)
         Log.d("Task Title: ", task.getTitle()); // for logging purposes only
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class TasksList { // class
 
 
-    private ArrayList<Task> list; // instance variable
+    public ArrayList<Task> list; // instance variable
 
 
     public TasksList(){ // constructor

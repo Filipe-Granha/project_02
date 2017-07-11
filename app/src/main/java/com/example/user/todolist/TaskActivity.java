@@ -13,20 +13,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import static com.example.user.todolist.R.string.task;
 
 
+// PAGE WITH FORM TO ADD NEW TASK
+
 
 public class TaskActivity extends AppCompatActivity {
-
-
-
 
 
     EditText descriptionInput;
     EditText titleInput;
     Button backButton;
     Button saveButton;
+
+    private String title;
+    private String description;
+    public ArrayList<Task> list = new ArrayList<Task>();
+
+
 
 
     @Override
@@ -36,25 +43,32 @@ public class TaskActivity extends AppCompatActivity {
 
         titleInput = (EditText) findViewById(R.id.titleInput);
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+        backButton = (Button) findViewById(R.id.back_to_list_button);
+        saveButton = (Button) findViewById(R.id.save_button);
+
 
     }
 
 
-    // save the users' titleInput
-    public void saveInfo(View view) { // function for the Button "Save"
-        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+    // save the users' titleInput and descriptionInput
+    public void onSaveButtonClicked(View button) { // function for the Button "Save"
 
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("title", titleInput.getText().toString());
-        editor.putString("description", descriptionInput.getText().toString());
-        editor.apply();
 
-        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
-        intent.putExtra("task", task);
-        startActivity(intent); // starts the intent (confirms it's ok to go)
+        String getTitle = titleInput.getText().toString();
+        String getDescription = descriptionInput.getText().toString();
+
+        if(titleInput.getText().toString().length() == 0 ) {
+            titleInput.setError( "Input Field Is Empty");
+        }
+            else {
+            Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
+            intent.putExtra("task", task);
+            startActivity(intent); // starts the intent (confirms it's ok to go)
+        }
     }
+
 
 
 
