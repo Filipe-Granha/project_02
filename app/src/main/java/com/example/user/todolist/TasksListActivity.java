@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,23 +25,17 @@ import static com.example.user.todolist.R.string.task;
 public class TasksListActivity extends AppCompatActivity { // AppCompatActivity is a subclass of android.app
 
 
-    Button addButton; // instance variable
+    Button addButton;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // function common to all Activities
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tasks_list); // the layout .xml file that will be displayed
+        setContentView(R.layout.activity_tasks_list);
         Log.d(getClass().toString(), "onCreate called");
 
-
-        // initializes Button
         addButton = (Button)findViewById(R.id.addButton);
 
-
-
-
-        //STEPS
 
 
 
@@ -62,13 +57,6 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         Log.d("tasks", tasks.toString());
 
 
-//
-        // STEP 4 - Adds whichever movie (newTask) we click on the list to the ArrayList (tasks)
-//        Task newTask = (Task) getIntent().getSerializableExtra("task");
-//        tasks.add(newTask);
-//        Log.d("tasks", tasks.toString());
-
-
 
         // STEP 6
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -77,29 +65,12 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
 
-
-
-        // adapter takes the ArrayList and builds the listView
-//        TasksList tasksList = new TasksList();
-//        ArrayList<Task> list = tasksList.getList();
         TasksListAdapter taskAdapter = new TasksListAdapter(this, tasks);
-
-
-
-        // this goes here after having created the Adapter Class
-        // 'list' is from the .xml file (android:id="@+id/list")
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
-
-
-
-
-
     }
 
 
-
-    // button takes to TaskActivity
     public void onAddButtonClicked(View button) {
         Log.d(getClass().toString(), "onAddButtonClicked was called");
         Intent intent = new Intent(this, TaskActivity.class);
@@ -107,8 +78,27 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         startActivity(intent);
     }
 
+    // Counter for total number of tasks
+    public int countAllTasks(View TextView) {
+        TextView textView = (TextView) findViewById(R.id.tasksCounter);
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        int counter = 0;
+        String counterString = "Your list is empty!";
+        String counterStringTwo = "";
+//        if(tasks == null) {
+//            counterString += " Add one now?";
+//            for (Task t : tasks) {
+//                counter += 1;
+//            }
+//        }
+        return tasks.size();
+    }
 
-    // on click in each item of the list, takes us to the ShowTaskActivity
+
+
+
+
+    // on click in each item of the list, takes us to  ShowTaskActivity
     public void getTask(View listItem) {
         Task task = (Task) listItem.getTag();
         Intent intent = new Intent(this, ShowTaskActivity.class); // the activity we want to go to when pressing the button
@@ -116,6 +106,8 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         startActivity(intent); // starts the intent (confirms it's ok to go)
         Log.d("Task Title: ", task.getTitle()); // for logging purposes only
     }
+
+
 
 
 

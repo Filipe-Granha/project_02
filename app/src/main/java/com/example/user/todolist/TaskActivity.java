@@ -31,6 +31,9 @@ import static com.example.user.todolist.R.string.task;
 // PAGE WITH FORM TO ADD NEW TASK
 
 
+// READY
+
+
 public class TaskActivity extends AppCompatActivity {
 
 
@@ -48,9 +51,9 @@ public class TaskActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // function common to all Activities
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task); // the layout .xml file that will be displayed
+        setContentView(R.layout.activity_task);
 
 
         titleInput = (EditText) findViewById(R.id.titleInput);
@@ -63,14 +66,11 @@ public class TaskActivity extends AppCompatActivity {
 
 
 
-    // save the users' titleInput and descriptionInput
-    public void onSaveButtonClicked(View button) { // function for the Button "Save"
 
-
+    public void onSaveButtonClicked(View button) {
 
         String title = titleInput.getText().toString();
         String description = descriptionInput.getText().toString();
-
 
         if(titleInput.getText().toString().length() == 0 ) {
             titleInput.setError( "Input Field Is Empty");
@@ -82,16 +82,12 @@ public class TaskActivity extends AppCompatActivity {
             startActivity(intent); // starts the intent (confirms it's ok to go)
             Task newTask = new Task(title, description);
             tasks.add(newTask);
-
         }
-
-
-
     }
 
 
 
-    public void onBackButtonClicked(View button) { // function for the Button
+    public void onBackButtonClicked(View button) {
         Log.d(getClass().toString(), "onBackButtonClicked was called");
         Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
         intent.putExtra("task", task);
