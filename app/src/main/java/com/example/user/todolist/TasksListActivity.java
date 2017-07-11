@@ -87,6 +87,8 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
         startActivity(intent);
     }
 
+
+
     // Counter for total number of tasks
     public void countAllTasks(View TextView) {
 //        TextView textView = (TextView) findViewById(tasksCounter);
