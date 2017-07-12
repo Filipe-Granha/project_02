@@ -17,9 +17,6 @@ import java.util.ArrayList;
 public class TasksListAdapter extends ArrayAdapter<Task> {
 
 
-
-
-
     public TasksListAdapter(Context context, ArrayList<Task> tasks) {
         super(context, 0, tasks);
     }
@@ -40,7 +37,7 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
 
 
         if(currentTask.getCompletedStatus()) {
-            title.setBackgroundColor(Color.LTGRAY);
+            listItemView.setBackgroundColor(Color.LTGRAY);
         }
 
 

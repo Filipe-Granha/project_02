@@ -14,7 +14,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import static com.example.user.todolist.R.string.task;
 
+
 // STARTING ACTIVITY OF THE APP
+
 
 public class TasksListActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class TasksListActivity extends AppCompatActivity {
 
 
 
-        // DELETE EACH TASK
+        // DISPLAYS ONLY TASKS WHICH HAVEN'T BEEN 'DELETED'
         ArrayList<Task> filteredTaskList = new ArrayList<Task>();
         for (Task task : taskList) {
             if (!task.getDeletedStatus()) {
@@ -53,10 +55,13 @@ public class TasksListActivity extends AppCompatActivity {
 
 
 
+
+
         // ADAPTER
         TasksListAdapter taskAdapter = new TasksListAdapter(this, filteredTaskList);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
+
 
 
 
@@ -71,13 +76,15 @@ public class TasksListActivity extends AppCompatActivity {
 
 
 
-    // ADD TASK BUTTON
+
+        // ADD TASK BUTTON
     public void onAddButtonClicked(View button) {
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra("task", task);
         startActivity(intent);
         Log.d(getClass().toString(), "onAddButtonClicked was called");
     }
+
 
 
     // CLICKING ON TASK TAKES US TO INDIVIDUAL TASK

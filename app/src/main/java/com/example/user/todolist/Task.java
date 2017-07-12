@@ -1,10 +1,6 @@
 package com.example.user.todolist;
 
-
-import android.os.Bundle;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by user on 08/07/2017.

@@ -1,8 +1,5 @@
 package com.example.user.todolist;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 
 import java.util.ArrayList;
 
@@ -20,7 +17,6 @@ public class TasksList {
 
     public TasksList(){
         list = new ArrayList<Task>();
-//        list.add(new Task("Task B", "Another description, this time for task B"));
     }
 
 
@@ -28,9 +24,6 @@ public class TasksList {
         return new ArrayList<Task>(list);
     }
 
-    public int countList() {
-        return list.size();
-    }
 
 
 
