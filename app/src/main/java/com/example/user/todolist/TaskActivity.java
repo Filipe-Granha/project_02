@@ -82,7 +82,7 @@ public class TaskActivity extends AppCompatActivity {
             TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
             ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
             Task newTask = new Task(title, description, isDone, isDeleted);
-            taskList.add(0, newTask);
+            taskList.add(0, newTask); // .reverse didn't work!?
 
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("taskList", gson.toJson(taskList));
