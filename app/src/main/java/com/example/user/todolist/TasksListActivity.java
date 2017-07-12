@@ -69,7 +69,7 @@ public class TasksListActivity extends AppCompatActivity {
 //        String counterString = "Your list is empty!";
         String counterStringTwo = "" + "";
         if (filteredTaskList != null) {
-            counterStringTwo += " Total Tazkz in your list: " + filteredTaskList.size();
+            counterStringTwo += "Tazkz in your list: " + filteredTaskList.size();
 //            for (Task t : allTasks) {
 //                counter += 1;
 //            }
