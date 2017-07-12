@@ -7,29 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-import static com.example.user.todolist.R.id.tasksCounter;
 import static com.example.user.todolist.R.string.task;
 
 
 // STARTING PAGE OF THE APP
 
 
-public class TasksListActivity extends AppCompatActivity { // AppCompatActivity is a subclass of android.app
+public class TasksListActivity extends AppCompatActivity {
 
 
     Button addButton;
     TextView tasksCounter;
+    ArrayList<Task> tasks;
 
 
     @Override
@@ -44,40 +42,28 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
 
-
-
-        // STEP 1 - Creates SharedPreferences database, named sharedPref
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
+        String tasks = sharedPref.getString(/*if there is something under this->*/"taskList", /*create an empty tasklist, then turn it into a string, if there is nothing*/new TasksList().getList().toString());
+        Log.d("Just a literal string of tasks we get back from sharedpref", tasks);
 
 
-        // STEP 2 - Transforms ArrayList into JSon String (individualTask) and sends it to database (sharedPref)
-        String individualTask = sharedPref.getString("Task", new ArrayList<Task>().toString());
-        Log.d("Task String", individualTask);
 
 
-        // STEP 3 - Tells GSon to transform JSon String (individualTask) back into an ArrayList (tasks)
         Gson gson = new Gson();
         TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
-        ArrayList<Task> tasks = gson.fromJson(individualTask, taskArrayList.getType());
-//        TasksListAdapter taskAdapter = new TasksListAdapter(this, tasks);
-        Log.d("tasks", tasks.toString());
+        ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
+        Log.d("This is an ArrayList of Task objects", taskList.toString());
 
 
-
-        // STEP 6
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("Task", gson.toJson(tasks));
-        editor.apply();
-
-
-
-        TasksListAdapter taskAdapter = new TasksListAdapter(this, tasks);
+        TasksListAdapter taskAdapter = new TasksListAdapter(this, taskList);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
 
 
     }
+
+
 
 
     public void onAddButtonClicked(View button) {
@@ -89,7 +75,20 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 
 
-    // Counter for total number of tasks
+
+    // on click in each item of the list, takes us to  ShowTaskActivity
+    public void getTask(View listItem) {
+        Task task = (Task) listItem.getTag();
+        Intent intent = new Intent(this, ShowTaskActivity.class);
+        intent.putExtra("task", task);
+        startActivity(intent);
+        Log.d("Task Title: ", task.getTitle());
+    }
+
+
+
+
+    // NOT WORKING - Counter for total number of tasks
     public void countAllTasks(View TextView) {
 //        TextView textView = (TextView) findViewById(tasksCounter);
         ArrayList<Task> tasks = new ArrayList<Task>();
@@ -106,23 +105,9 @@ public class TasksListActivity extends AppCompatActivity { // AppCompatActivity 
 
 //    tasks.size(); ??
 
-
-
-
-
-
-
-    // on click in each item of the list, takes us to  ShowTaskActivity
-    public void getTask(View listItem) {
-        Task task = (Task) listItem.getTag();
-        Intent intent = new Intent(this, ShowTaskActivity.class); // the activity we want to go to when pressing the button
-        intent.putExtra("task", task);
-        startActivity(intent); // starts the intent (confirms it's ok to go)
-        Log.d("Task Title: ", task.getTitle()); // for logging purposes only
-    }
-
-
-
+//    public int getCount() {
+//        return tasks.size();  ??
+//    }
 
 
 

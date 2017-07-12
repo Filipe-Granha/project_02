@@ -10,19 +10,17 @@ import java.util.ArrayList;
  * Created by user on 08/07/2017.
  */
 
-public class TasksList { // class
+public class TasksList {
 
 
-    public ArrayList<Task> list; // instance variable
+    public ArrayList<Task> list;
 
 
 
 
-    public TasksList(){ // constructor
+    public TasksList(){
         list = new ArrayList<Task>();
-
-        list.add(new Task("Task B", "Another description, this time for task B"));
-
+//        list.add(new Task("Task B", "Another description, this time for task B"));
     }
 
 

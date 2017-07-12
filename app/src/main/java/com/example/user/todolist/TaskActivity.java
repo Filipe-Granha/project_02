@@ -44,9 +44,8 @@ public class TaskActivity extends AppCompatActivity {
     Button backButton;
     Button saveButton;
 
+
     public ArrayList<Task> tasks = new ArrayList<Task>();
-
-
 
 
 
@@ -60,10 +59,7 @@ public class TaskActivity extends AppCompatActivity {
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         backButton = (Button) findViewById(R.id.back_to_list_button);
         saveButton = (Button) findViewById(R.id.save_button);
-
-
     }
-
 
 
 
@@ -76,12 +72,21 @@ public class TaskActivity extends AppCompatActivity {
             titleInput.setError( "Input Field Is Empty");
         }
         else {
+            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+            String tasks = sharedPref.getString(/*if there is something under this->*/"taskList", /*create an empty tasklist, then turn it into a string, if there is nothing*/new TasksList().getList().toString());
+            Gson gson = new Gson();
+            TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
+            ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
+            Task newTask = new Task(title, description);
+            taskList.add(newTask);
+
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("taskList", gson.toJson(taskList));
+            editor.apply();
+
             Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
-            intent.putExtra("task", task);
             startActivity(intent); // starts the intent (confirms it's ok to go)
-            Task newTask = new Task(title, description);
-            tasks.add(newTask);
         }
     }
 
