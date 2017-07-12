@@ -25,8 +25,8 @@ import static com.example.user.todolist.R.string.task;
 public class TasksListActivity extends AppCompatActivity {
 
 
-    Button addButton;
-    TextView tasksCounter;
+//    Button addButton;
+    TextView list;
     ArrayList<Task> tasks;
 
 
@@ -36,23 +36,7 @@ public class TasksListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tasks_list);
         Log.d(getClass().toString(), "onCreate called");
 
-        addButton = (Button)findViewById(R.id.addButton);
-
-
-
-
-//        Task taskCompleted = (Task) getIntent().getSerializableExtra("taskCompleted"); // from button "Mark as Completed"
-//
-//
-//        TextView list = (TextView) findViewById(R.id.individual_task);
-//        String taskString = "";
-//        if (taskCompleted != null) {
-//            taskString += taskCompleted.getTitle() + " banana " + taskCompleted.getDescription();
-//        }
-//        list.setText(taskString);
-
-
-
+//        addButton = (Button) findViewById(R.id.addButton);
 
 
 
@@ -63,21 +47,17 @@ public class TasksListActivity extends AppCompatActivity {
         Log.d("Just a literal string of tasks we get back from sharedpref", tasks);
 
 
-
-
         Gson gson = new Gson();
-        TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
+        TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>() {
+        };
         ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
         ArrayList<Task> filteredTaskList = new ArrayList<Task>();
-        for(Task task : taskList){
-            if(!task.getDeletedStatus()){
+        for (Task task : taskList) {
+            if (!task.getDeletedStatus()) {
                 filteredTaskList.add(task);
             }
         }
         Log.d("This is an ArrayList of Task objects", taskList.toString());
-
-
-
 
 
         TasksListAdapter taskAdapter = new TasksListAdapter(this, filteredTaskList);
@@ -102,8 +82,6 @@ public class TasksListActivity extends AppCompatActivity {
     }
 
 
-
-
     // on click in each item of the list, takes us to  ShowTaskActivity
     public void getTask(View listItem) {
 
@@ -116,22 +94,49 @@ public class TasksListActivity extends AppCompatActivity {
     }
 
 
+    public void countAllTasks(View TextView) {
 
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-    // NOT WORKING - Counter for total number of tasks
-//    public void countAllTasks(View TextView) {
-//       TextView textView = (TextView) findViewById(tasksCounter);
-//        ArrayList<Task> tasks = new ArrayList<Task>();
+        String arrayListAsString = sharedPref.getString("taskList", new ArrayList<Task>().toString());
+
+        Gson gson = new Gson();
+
+        TypeToken<ArrayList<Task>> typeToken = new TypeToken<ArrayList<Task>>() {
+        };
+
+        // TEST
+
+//        TextView list = (TextView) findViewById(R.id.tasksCounter);
+//
+//        String taskString = "" + "" + "" + "";
+//
+//        if (task != null) {
+//            taskString +="TAzK:" + "\n" + task.getTitle() + "\n" + "\n" + "DETAILS:" + "\n" + task.getDescription();
+//
+//        }
+//        list.setText(taskString);
+        //TEST
+
+        ArrayList<Task> allTasks = gson.fromJson(arrayListAsString, typeToken.getType());
+
+        TextView list = (TextView) findViewById(R.id.tasksCounter);
+
 //        int counter = 0;
 //        String counterString = "Your list is empty!";
-//        String counterStringTwo = "";
-//        if (tasks == null) {
-//            counterString += " Add a task now?";
-//            for (Task t : tasks) {
+        String counterStringTwo = "" + "";
+        if (allTasks != null) {
+            counterStringTwo += " There are " + allTasks.size() + "Tazks";
+//            for (Task t : allTasks) {
 //                counter += 1;
 //            }
 //        }
-//    }
+//        else ("Your list is empty!");
+
+        }
+        list.setText(counterStringTwo);
+    }
+}
 
 //    tasks.size(); ??
 
@@ -142,4 +147,4 @@ public class TasksListActivity extends AppCompatActivity {
 
 
 
-}
+

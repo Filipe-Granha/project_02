@@ -28,6 +28,10 @@ public class TasksList {
         return new ArrayList<Task>(list);
     }
 
+    public int countList() {
+        return list.size();
+    }
+
 
 
 

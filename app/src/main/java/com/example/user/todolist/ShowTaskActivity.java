@@ -33,7 +33,11 @@ public class ShowTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_task);
 
 
-        onCompletedButton = (Button) findViewById(R.id.completedButton);
+//        onCompletedButton = (Button) findViewById(R.id.completedButton);
+//        onDeletedButton = (Button) findViewById(R.id.deleteButton);
+
+
+
 
         task = (Task) getIntent().getSerializableExtra("task");
 
@@ -42,11 +46,15 @@ public class ShowTaskActivity extends AppCompatActivity {
         String taskString = "" + "" + "" + "";
 
         if (task != null) {
-            taskString += "TAzK:" + "\n" + task.getTitle() + "\n" + "\n" + "DETAILS:" + "\n" + task.getDescription();
+            taskString +="TAzK:" + "\n" + task.getTitle() + "\n" + "\n" + "DETAILS:" + "\n" + task.getDescription();
 
         }
         list.setText(taskString);
    }
+
+
+
+
 
     @Override
     protected void onResume() {
@@ -119,10 +127,7 @@ public class ShowTaskActivity extends AppCompatActivity {
         intent.putExtra("taskDeleted", task);
         startActivity(intent);
         Log.d(getClass().toString(), "onDeletedButton was called");
-
-
     }
-
 
 
 

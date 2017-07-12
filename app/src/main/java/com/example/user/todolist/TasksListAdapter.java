@@ -44,9 +44,6 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
         }
 
 
-//        if(currentTask.getDeletedStatus()) {
-//            currentTask.remove();
-//        }
 
 
 
