@@ -20,8 +20,8 @@ import static com.example.user.todolist.R.string.task;
 public class ShowTaskActivity extends AppCompatActivity {
 
 
-    Button completedButton;
-
+    Button oncompletedButton;
+    Task task;
 
     // DISPLAYS DETAILS OF EACH INDIVIDUAL TASK
 
@@ -32,7 +32,7 @@ public class ShowTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_task);
 
 
-        completedButton = (Button) findViewById(R.id.completedButton);
+        oncompletedButton = (Button) findViewById(R.id.completedButton);
 
 
 //        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -51,30 +51,56 @@ public class ShowTaskActivity extends AppCompatActivity {
 //        Log.d("tasks", tasks.toString());
 //
 
-
-        Task newTask = (Task) getIntent().getSerializableExtra("task");
-
-
-
+////
+        task = (Task) getIntent().getSerializableExtra("task");
+//
+//
+//
         TextView list = (TextView) findViewById(R.id.individual_task);
+
         String taskString = "";
-        if (newTask != null) {
-            taskString += newTask.getTitle() + " banana " + newTask.getDescription();
+        if (task != null) {
+            taskString += task.getTitle() + " banana " + task.getDescription();
         }
         list.setText(taskString);
-    }
+   }
 
 
 
-    // NOT WORKING! MAKES THE APP CRASH
+
     public void onCompletedButton(View button) {
-        Log.d(getClass().toString(), "onCompletedButton was called");
+        //task.setCompleted();
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        String arrayListAsString =  sharedPref.getString("taskList", new ArrayList<Task>().toString());
+
+        Gson gson = new Gson();
+
+        TypeToken<ArrayList<Task>> typeToken = new TypeToken<ArrayList<Task>>(){};
+
+        ArrayList<Task> allTasks =  gson.fromJson(arrayListAsString, typeToken.getType());
+
+        for(Task tmpTask: allTasks) {
+            if(tmpTask.getTitle().equals(task.getTitle())) {
+                tmpTask.setCompleted();
+            }
+        }
+
+        String backToJson = gson.toJson(allTasks);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString("taskList", backToJson);
+        editor.apply();
+      //  finish();
+////
 
 
-
-        Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
-       // intent.putExtra("task", task);
-        startActivity(intent); // starts the intent (confirms it's ok to go)
+//
+        Intent intent = new Intent(this, TasksListActivity.class);
+      //  intent.putExtra("taskCompleted", task);
+        startActivity(intent);
+      //  Log.d(getClass().toString(), "onCompletedButton was called");
     }
 
 

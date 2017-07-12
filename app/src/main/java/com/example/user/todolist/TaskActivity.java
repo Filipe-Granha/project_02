@@ -41,6 +41,7 @@ public class TaskActivity extends AppCompatActivity {
 
     EditText descriptionInput;
     EditText titleInput;
+    Boolean completedInput;
     Button backButton;
     Button saveButton;
 
@@ -57,6 +58,7 @@ public class TaskActivity extends AppCompatActivity {
 
         titleInput = (EditText) findViewById(R.id.titleInput);
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+
         backButton = (Button) findViewById(R.id.back_to_list_button);
         saveButton = (Button) findViewById(R.id.save_button);
     }
@@ -67,6 +69,7 @@ public class TaskActivity extends AppCompatActivity {
 
         String title = titleInput.getText().toString();
         String description = descriptionInput.getText().toString();
+        Boolean isDone = false;
 
         if(titleInput.getText().toString().length() == 0 ) {
             titleInput.setError( "Input Field Is Empty");
@@ -77,7 +80,7 @@ public class TaskActivity extends AppCompatActivity {
             Gson gson = new Gson();
             TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
             ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
-            Task newTask = new Task(title, description);
+            Task newTask = new Task(title, description, isDone);
             taskList.add(newTask);
 
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -85,17 +88,18 @@ public class TaskActivity extends AppCompatActivity {
             editor.apply();
 
             Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+    //        finish();
             Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
             startActivity(intent); // starts the intent (confirms it's ok to go)
         }
     }
 
 
-
     public void onBackButtonClicked(View button) {
+    //    finish();
         Log.d(getClass().toString(), "onBackButtonClicked was called");
         Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
-        intent.putExtra("task", task);
+//        intent.putExtra("task", task);
         startActivity(intent); // starts the intent (confirms it's ok to go)
     }
 

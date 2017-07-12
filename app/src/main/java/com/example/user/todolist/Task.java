@@ -14,13 +14,12 @@ public class Task implements Serializable {
 
     private String title;
     private String description;
-//    private boolean isDone;
+    private boolean isDone;
 
-
-
-    public  Task(String title, String description) {
+    public  Task(String title, String description, boolean isDone) {
         this.title = title;
         this.description = description;
+        this.isDone = isDone;
     }
 
     public String getTitle() {
@@ -29,6 +28,14 @@ public class Task implements Serializable {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public void setCompleted() {
+        this.isDone = true;
+    }
+
+    public boolean getCompletedStatus() {
+        return this.isDone;
     }
 
 

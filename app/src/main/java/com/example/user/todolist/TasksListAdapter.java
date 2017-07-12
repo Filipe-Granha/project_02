@@ -1,6 +1,7 @@
 package com.example.user.todolist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
  */
 
 public class TasksListAdapter extends ArrayAdapter<Task> {
+
+
+
 
 
     public TasksListAdapter(Context context, ArrayList<Task> tasks) {
@@ -33,6 +37,11 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
         // of the instance variables that we want to show in the Activity/view
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(currentTask.getTitle().toString());
+
+
+        if(currentTask.getCompletedStatus()) {
+            title.setBackgroundColor(Color.RED);
+        }
 
         // setTag() allows us to attach an object to a view.
         listItemView.setTag(currentTask);

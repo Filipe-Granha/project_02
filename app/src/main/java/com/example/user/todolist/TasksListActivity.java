@@ -41,6 +41,21 @@ public class TasksListActivity extends AppCompatActivity {
 
 
 
+//        Task taskCompleted = (Task) getIntent().getSerializableExtra("taskCompleted"); // from button "Mark as Completed"
+//
+//
+//        TextView list = (TextView) findViewById(R.id.individual_task);
+//        String taskString = "";
+//        if (taskCompleted != null) {
+//            taskString += taskCompleted.getTitle() + " banana " + taskCompleted.getDescription();
+//        }
+//        list.setText(taskString);
+
+
+
+
+
+
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
@@ -56,6 +71,9 @@ public class TasksListActivity extends AppCompatActivity {
         Log.d("This is an ArrayList of Task objects", taskList.toString());
 
 
+
+
+
         TasksListAdapter taskAdapter = new TasksListAdapter(this, taskList);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
@@ -63,14 +81,18 @@ public class TasksListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
+    }
 
     public void onAddButtonClicked(View button) {
-        Log.d(getClass().toString(), "onAddButtonClicked was called");
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra("task", task);
         startActivity(intent);
+        Log.d(getClass().toString(), "onAddButtonClicked was called");
     }
 
 
@@ -78,6 +100,7 @@ public class TasksListActivity extends AppCompatActivity {
 
     // on click in each item of the list, takes us to  ShowTaskActivity
     public void getTask(View listItem) {
+
         Task task = (Task) listItem.getTag();
         Intent intent = new Intent(this, ShowTaskActivity.class);
         intent.putExtra("task", task);
@@ -89,19 +112,19 @@ public class TasksListActivity extends AppCompatActivity {
 
 
     // NOT WORKING - Counter for total number of tasks
-    public void countAllTasks(View TextView) {
-//        TextView textView = (TextView) findViewById(tasksCounter);
-        ArrayList<Task> tasks = new ArrayList<Task>();
-        int counter = 0;
-        String counterString = "Your list is empty!";
-        String counterStringTwo = "";
-        if (tasks == null) {
-            counterString += " Add a task now?";
-            for (Task t : tasks) {
-                counter += 1;
-            }
-        }
-    }
+//    public void countAllTasks(View TextView) {
+//       TextView textView = (TextView) findViewById(tasksCounter);
+//        ArrayList<Task> tasks = new ArrayList<Task>();
+//        int counter = 0;
+//        String counterString = "Your list is empty!";
+//        String counterStringTwo = "";
+//        if (tasks == null) {
+//            counterString += " Add a task now?";
+//            for (Task t : tasks) {
+//                counter += 1;
+//            }
+//        }
+//    }
 
 //    tasks.size(); ??
 
