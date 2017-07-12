@@ -25,7 +25,7 @@ import static com.example.user.todolist.R.string.task;
 public class TasksListActivity extends AppCompatActivity {
 
 
-//    Button addButton;
+    //    Button addButton;
     TextView list;
     ArrayList<Task> tasks;
 
@@ -37,8 +37,6 @@ public class TasksListActivity extends AppCompatActivity {
         Log.d(getClass().toString(), "onCreate called");
 
 //        addButton = (Button) findViewById(R.id.addButton);
-
-
 
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -63,6 +61,27 @@ public class TasksListActivity extends AppCompatActivity {
         TasksListAdapter taskAdapter = new TasksListAdapter(this, filteredTaskList);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
+
+        //TEST
+        TextView list = (TextView) findViewById(R.id.tasksCounter);
+
+//        int counter = 0;
+//        String counterString = "Your list is empty!";
+        String counterStringTwo = "" + "";
+        if (filteredTaskList != null) {
+            counterStringTwo += " Total Tazkz in your list: " + filteredTaskList.size();
+//            for (Task t : allTasks) {
+//                counter += 1;
+//            }
+
+//        }
+//
+
+        }
+//        else "Your list is empty!";
+        list.setText(counterStringTwo);
+
+        //TEST
 
 
     }
@@ -104,6 +123,8 @@ public class TasksListActivity extends AppCompatActivity {
 
         TypeToken<ArrayList<Task>> typeToken = new TypeToken<ArrayList<Task>>() {
         };
+    }
+}
 
         // TEST
 
@@ -118,25 +139,25 @@ public class TasksListActivity extends AppCompatActivity {
 //        list.setText(taskString);
         //TEST
 
-        ArrayList<Task> allTasks = gson.fromJson(arrayListAsString, typeToken.getType());
+//        ArrayList<Task> allTasks = gson.fromJson(arrayListAsString, typeToken.getType());
 
-        TextView list = (TextView) findViewById(R.id.tasksCounter);
-
-//        int counter = 0;
-//        String counterString = "Your list is empty!";
-        String counterStringTwo = "" + "";
-        if (allTasks != null) {
-            counterStringTwo += " There are " + allTasks.size() + "Tazks";
-//            for (Task t : allTasks) {
-//                counter += 1;
-//            }
+//        TextView list = (TextView) findViewById(R.id.tasksCounter);
+//
+////        int counter = 0;
+////        String counterString = "Your list is empty!";
+//        String counterStringTwo = "" + "";
+//        if (allTasks != null) {
+//            counterStringTwo += " There are " + allTasks.size() + "Tazks";
+////            for (Task t : allTasks) {
+////                counter += 1;
+////            }
+////        }
+////        else ("Your list is empty!");
+//
 //        }
-//        else ("Your list is empty!");
+//        list.setText(counterStringTwo);
+//    }
 
-        }
-        list.setText(counterStringTwo);
-    }
-}
 
 //    tasks.size(); ??
 
