@@ -69,8 +69,11 @@ public class ShowTaskActivity extends AppCompatActivity {
     // NOT WORKING! MAKES THE APP CRASH
     public void onCompletedButton(View button) {
         Log.d(getClass().toString(), "onCompletedButton was called");
-        Intent intent = new Intent(this, CompletedTasksListActivity.class); // the activity we want to go to when pressing the button
-        intent.putExtra("task", task);
+
+
+
+        Intent intent = new Intent(this, TasksListActivity.class); // the activity we want to go to when pressing the button
+       // intent.putExtra("task", task);
         startActivity(intent); // starts the intent (confirms it's ok to go)
     }
 
