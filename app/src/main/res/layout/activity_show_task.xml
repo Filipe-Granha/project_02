@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/individual_task"
-        android:layout_width="wrap_content"
-        android:layout_height="74dp"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"

@@ -21,7 +21,7 @@ public class ShowTaskActivity extends AppCompatActivity {
 
 
     Button onCompletedButton;
-    Button onDeleteButton;
+    Button onDeletedButton;
     Task task;
 
     // DISPLAYS DETAILS OF EACH INDIVIDUAL TASK
@@ -39,9 +39,11 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         TextView list = (TextView) findViewById(R.id.individual_task);
 
-        String taskString = "";
+        String taskString = "" + "" + "" + "";
+
         if (task != null) {
-            taskString += task.getTitle() + " is your Task, and your Description is: " + task.getDescription();
+            taskString += "TAzK:" + "\n" + task.getTitle() + "\n" + "\n" + "DETAILS:" + "\n" + task.getDescription();
+
         }
         list.setText(taskString);
    }
