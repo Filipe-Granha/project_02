@@ -68,13 +68,19 @@ public class TasksListActivity extends AppCompatActivity {
         Gson gson = new Gson();
         TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>(){};
         ArrayList<Task> taskList = gson.fromJson(/*tasks is the string from step above*/tasks, taskArrayList.getType());
+        ArrayList<Task> filteredTaskList = new ArrayList<Task>();
+        for(Task task : taskList){
+            if(!task.getDeletedStatus()){
+                filteredTaskList.add(task);
+            }
+        }
         Log.d("This is an ArrayList of Task objects", taskList.toString());
 
 
 
 
 
-        TasksListAdapter taskAdapter = new TasksListAdapter(this, taskList);
+        TasksListAdapter taskAdapter = new TasksListAdapter(this, filteredTaskList);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(taskAdapter);
 
@@ -106,6 +112,7 @@ public class TasksListActivity extends AppCompatActivity {
         intent.putExtra("task", task);
         startActivity(intent);
         Log.d("Task Title: ", task.getTitle());
+
     }
 
 

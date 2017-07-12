@@ -20,7 +20,8 @@ import static com.example.user.todolist.R.string.task;
 public class ShowTaskActivity extends AppCompatActivity {
 
 
-    Button oncompletedButton;
+    Button onCompletedButton;
+    Button onDeleteButton;
     Task task;
 
     // DISPLAYS DETAILS OF EACH INDIVIDUAL TASK
@@ -32,44 +33,29 @@ public class ShowTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_task);
 
 
-        oncompletedButton = (Button) findViewById(R.id.completedButton);
+        onCompletedButton = (Button) findViewById(R.id.completedButton);
 
-
-//        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-//
-//
-//
-//        String individualTask = sharedPref.getString("Task", new ArrayList<Task>().toString());
-//        Log.d("Task String", individualTask);
-//
-//
-//
-//        Gson gson = new Gson();
-//        TypeToken<ArrayList<Task>> taskArrayList = new TypeToken<ArrayList<Task>>() {
-//        };
-//        ArrayList<Task> tasks = gson.fromJson(individualTask, taskArrayList.getType());
-//        Log.d("tasks", tasks.toString());
-//
-
-////
         task = (Task) getIntent().getSerializableExtra("task");
-//
-//
-//
+
         TextView list = (TextView) findViewById(R.id.individual_task);
 
         String taskString = "";
         if (task != null) {
-            taskString += task.getTitle() + " banana " + task.getDescription();
+            taskString += task.getTitle() + " is your Task, and your Description is: " + task.getDescription();
         }
         list.setText(taskString);
    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+
+    }
 
 
     public void onCompletedButton(View button) {
-        //task.setCompleted();
+
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String arrayListAsString =  sharedPref.getString("taskList", new ArrayList<Task>().toString());
@@ -92,16 +78,51 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         editor.putString("taskList", backToJson);
         editor.apply();
-      //  finish();
-////
+//        finish();
 
-
-//
         Intent intent = new Intent(this, TasksListActivity.class);
-      //  intent.putExtra("taskCompleted", task);
+      intent.putExtra("taskCompleted", task);
         startActivity(intent);
-      //  Log.d(getClass().toString(), "onCompletedButton was called");
+      Log.d(getClass().toString(), "onCompletedButton was called");
     }
+
+
+    public void onDeletedButton(View button) {
+
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        String arrayListAsString =  sharedPref.getString("taskList", new ArrayList<Task>().toString());
+
+        Gson gson = new Gson();
+
+        TypeToken<ArrayList<Task>> typeToken = new TypeToken<ArrayList<Task>>(){};
+
+        ArrayList<Task> allTasks =  gson.fromJson(arrayListAsString, typeToken.getType());
+
+        for(Task tmpTask: allTasks) {
+            if(tmpTask.getTitle().equals(task.getTitle())) {
+                tmpTask.setDeleted();
+            }
+        }
+
+        String backToJson = gson.toJson(allTasks);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString("taskList", backToJson);
+        editor.apply();
+//        finish();
+
+        Intent intent = new Intent(this, TasksListActivity.class);
+        intent.putExtra("taskDeleted", task);
+        startActivity(intent);
+        Log.d(getClass().toString(), "onDeletedButton was called");
+
+
+    }
+
+
+
 
 
 }
