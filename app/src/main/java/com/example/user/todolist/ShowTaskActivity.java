@@ -47,7 +47,7 @@ public class ShowTaskActivity extends AppCompatActivity {
         ArrayList<Task> allTasks =  gson.fromJson(arrayListAsString, typeToken.getType());
 
 
-        // TASK BECOMES COMPLETED (SELECTS ALSO 1st ROW??)
+        // TASK BECOMES COMPLETED (SELECTS ALSO 1st ROW, IF ANY OTHER IS SELECTED??)
         for(Task tmpTask: allTasks) {
             if(tmpTask.getTitle().equals(task.getTitle())) {
                 tmpTask.setCompleted();

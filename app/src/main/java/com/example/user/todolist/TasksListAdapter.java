@@ -35,7 +35,7 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(currentTask.getTitle().toString());
 
-
+        // SETS BACKGROUND COLOUR FOR COMPLETED TASKS
         if(currentTask.getCompletedStatus()) {
             listItemView.setBackgroundColor(Color.LTGRAY);
         }
