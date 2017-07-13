@@ -38,11 +38,9 @@ public class TasksListAdapter extends ArrayAdapter<Task> {
         // SETS BACKGROUND COLOUR FOR COMPLETED TASKS
         if(currentTask.getCompletedStatus()) {
             listItemView.setBackgroundColor(Color.LTGRAY);
+        } else {
+            listItemView.setBackgroundColor(Color.WHITE);
         }
-
-
-
-
 
         // setTag() allows us to attach an object to a view.
         listItemView.setTag(currentTask);

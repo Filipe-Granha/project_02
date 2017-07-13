@@ -6,5 +6,6 @@
     <string name="show">This Tazk</string>
     <string name="preference_file_key">TAZKZ</string>
     <string name="checkBox">Completed?</string>
+    <string name="add_task">Add a New Tazk</string>
 
 </resources>
